@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clickbait Detector</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="header">
+
+            <h1>
+                Automated Clickbait Detector
+            </h1>
+
+            <p>
+                Detect whether a news headline is clickbait
+                using Natural Language Processing and
+                Machine Learning.
+            </p>
+
+        </div>
+
+
+        <!-- MAIN CARD -->
+        <div class="card">
+
+            <form method="POST">
+
+                <label for="headline">
+                    Enter News Headline
+                </label>
+
+                <textarea
+                    id="headline"
+                    name="headline"
+                    placeholder="Example: You won't believe what happened next..."
+                    required>{{ headline }}</textarea>
+
+                <button type="submit">
+                    🔍 Detect Clickbait
+                </button>
+
+            </form>
+
+
+            <!-- RESULT -->
+            {% if prediction %}
+
+            <div class="result">
+
+                {% if prediction == "clickbait" %}
+
+                    <div class="result-icon">
+                        ⚠️
+                    </div>
+
+                    <h2>
+                        Clickbait Detected
+                    </h2>
+
+                    <p>
+                        This headline has been classified as
+                        <strong>clickbait</strong>.
+                    </p>
+
+                {% else %}
+
+                    <div class="result-icon">
+                        ✅
+                    </div>
+
+                    <h2>
+                        Non-Clickbait
+                    </h2>
+
+                    <p>
+                        This headline has been classified as
+                        <strong>non-clickbait</strong>.
+                    </p>
+
+                {% endif %}
+
+
+                <!-- CONFIDENCE -->
+                <div class="confidence">
+
+                    <span>
+                        Model Confidence
+                    </span>
+
+                    <strong>
+                        {{ "%.2f"|format(confidence) }}%
+                    </strong>
+
+                </div>
+
+
+                <!-- CONFIDENCE BAR -->
+                <div class="progress">
+
+                    <div class="progress">
+                         <div class="progress-bar"></div>
+                    </div>
+
+                </div>
+
+
+                <!-- CONFIDENCE MESSAGE -->
+                {% if confidence >= 90 %}
+
+                    <p class="confidence-message">
+                        High confidence prediction
+                    </p>
+
+                {% elif confidence >= 70 %}
+
+                    <p class="confidence-message">
+                        Moderate confidence prediction
+                    </p>
+
+                {% else %}
+
+                    <p class="confidence-message">
+                        The model is less certain about this prediction
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- INFORMATION BOXES -->
+        <div class="info">
+
+            <div class="info-box">
+
+                <h3>
+                    🧠 NLP
+                </h3>
+
+                <p>
+                    Text preprocessing and TF-IDF
+                    feature extraction.
+                </p>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h3>
+                    🤖 Machine Learning
+                </h3>
+
+                <p>
+                    Logistic Regression classification
+                    model.
+                </p>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h3>
+                    📊 Prediction
+                </h3>
+
+                <p>
+                    Classifies headlines as clickbait
+                    or non-clickbait.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOTER -->
+        <footer>
+
+            <p>
+                Automated Clickbait Detection using
+                NLP & Machine Learning
+            </p>
+
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

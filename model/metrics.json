@@ -1,0 +1,20 @@
+{
+    "dataset_size": 32000,
+    "training_samples": 25600,
+    "testing_samples": 6400,
+    "accuracy": 0.976875,
+    "precision": 0.9742075823492853,
+    "recall": 0.9796875,
+    "f1_score": 0.976939856653163,
+    "confusion_matrix": [
+        [
+            3117,
+            83
+        ],
+        [
+            65,
+            3135
+        ]
+    ],
+    "misclassified_samples": 148
+}
